@@ -1,0 +1,9 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "jinja": "html",
+    "jinja-html": "html"
+  },
+  "files.associations": {
+    "*.html": "html"
+  }
+}

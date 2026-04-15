@@ -1,23 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
-  {% for post in posts %}
-    <article class="bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-[#4a4a4a] p-4 mb-6 transition-all duration-150 hover:shadow-md hover:border-gray-300 dark:hover:shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-      <div class="flex items-start gap-4">
-        <img class="rounded-full flex-shrink-0 w-16 h-16 object-cover border-2 border-gray-100 dark:border-gray-700 bg-white ring-2 ring-transparent"
-             src="/static/profile_pics/default.jpg"
-             alt="{{ post.author }}'s profile picture"
-             loading="lazy">
-        <div class="flex-grow">
-          <div class="pb-1 mb-2 border-b border-gray-200 dark:border-[#4a4a4a]">
-            <a class="mr-2 text-gray-800 dark:text-[#e0e0e0] hover:text-gray-600 dark:hover:text-white transition-colors" href="#">{{ post.author }}</a>
-            <small class="text-gray-500 dark:text-gray-400">{{ post.date_posted }}</small>
-          </div>
-          <h2 class="text-2xl font-heading mb-2">
-            <a class="text-gray-800 dark:text-[#f0f0f0] hover:text-[#428bca] dark:hover:text-[#428bca] transition-colors" href="#">{{ post.title }}</a>
-          </h2>
-          <p class="text-gray-700 dark:text-[#e0e0e0] whitespace-pre-line text-lg">{{ post.content }}</p>
-        </div>
+{% for post in posts %}
+<article
+  class="bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-[#4a4a4a] p-4 mb-6 transition-all duration-150 hover:shadow-md hover:border-gray-300 dark:hover:shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+  <div class="flex items-start gap-4">
+    <img
+      class="rounded-full flex-shrink-0 w-16 h-16 object-cover border-2 border-gray-100 dark:border-gray-700 bg-white ring-2 ring-transparent"
+      src="/static/profile_pics/default.jpg" alt="{{ post.author }}'s profile picture" loading="lazy">
+    <div class="flex-grow">
+      <div class="pb-1 mb-2 border-b border-gray-200 dark:border-[#4a4a4a]">
+        <a class="mr-2 text-gray-800 dark:text-[#e0e0e0] hover:text-gray-600 dark:hover:text-white transition-colors"
+          href="{{ url_for('post_page', post_id=post.id) }}">{{ post.author }}</a>
+        <small class="text-gray-500 dark:text-gray-400">{{ post.date_posted }}</small>
       </div>
-    </article>
-  {% endfor %}
+      <h2 class="text-2xl font-heading mb-2">
+        <a class="text-gray-800 dark:text-[#f0f0f0] hover:text-[#428bca] dark:hover:text-[#428bca] transition-colors"
+          href="{{ url_for('post_page', post_id=post.id) }}">{{ post.title }}</a>
+      </h2>
+      <p class="text-gray-700 dark:text-[#e0e0e0] whitespace-pre-line text-lg">{{ post.content }}</p>
+    </div>
+  </div>
+</article>
+{% endfor %}
 {% endblock content %}
